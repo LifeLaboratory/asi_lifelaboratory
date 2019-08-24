@@ -25,13 +25,14 @@ class Provider:
     @staticmethod
     def insert_cv(args):
         query = """
-    insert into cv(id_user, title, url, descriprion)
+    insert into cv(id_user, title, url, description)
     VALUES (
-      '{id_user}'
+      {id_user}
       , '{title}'
       , '{url}'
-      , '{descriprion}'
+      , '{description}'
     )
+    returning id_cv
     """
         return Sql.exec(query=query, args=args)
 
@@ -41,7 +42,7 @@ class Provider:
     update cv 
     set url = '{url}'
       , title = '{title}'
-      , descriprion = '{descriprion}'
+      , description = '{descriprion}'
     where id_user = {id_user}
     )
     """

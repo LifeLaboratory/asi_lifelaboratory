@@ -30,8 +30,11 @@ def update_cv(args):
     :return:
     """
     provider = Provider()
-    if args.get(names.ID_USER):
+    if args.get(names.ID_CV):
         answer = provider.update_cv(args)
     else:
-        answer = provider.insert_cv(args)
+        try:
+            answer = provider.insert_cv(args)[0]
+        except:
+            answer = {}
     return answer

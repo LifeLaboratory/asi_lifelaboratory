@@ -2,14 +2,24 @@ from app.api.sql.document_provider import Provider
 from app.api.base import base_name as names
 
 
-def get_document(args):
+def get_lesson(args):
     """
-    Метод для получения данных о документах
+    Метод для получения данных о конкретном уроке
     :param args:
     :return:
     """
     provider = Provider()
-    answer = provider.get_document(args)
+    answer = provider.get_lesson(args)
+    return answer
+
+
+def get_lessons():
+    """
+    Метод для получения данных о уроке
+    :return:
+    """
+    provider = Provider()
+    answer = provider.get_lessons()
     return answer
 
 

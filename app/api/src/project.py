@@ -1,5 +1,6 @@
 from app.api.sql.project_provider import Provider
 from app.api.base import base_name as names
+import json
 
 
 def get_project(args):
@@ -12,6 +13,11 @@ def get_project(args):
     answer = provider.get_project(args)
     return answer
 
+def update_rec(answer):
+    for i in range(len(answer)):
+        for j in range(len(answer[i].get('category'))):
+            answer[i].get('category')[j] = json.loads(answer[i].get('category')[j])
+
 
 def get_filter_project(args):
     """
@@ -20,11 +26,14 @@ def get_filter_project(args):
     :return:
     """
     provider = Provider()
+    id_user = args.get(names.ID_USER)
+    id_category = args.get(names.ID_CATEGORY)
     args = {
-        names.ID_USER: args.get(names.ID_USER),
-        names.ID_CATEGORY: args.get(names.ID_CATEGORY),
+        names.ID_USER: 'and upd."id_user" = %s' % id_user if id_user else 'and true',
+        names.ID_CATEGORY: 'and pc."id_category" = any(%s)' % str(id_category) if id_category else 'and true',
     }
     answer = provider.get_filter_project(args)
+    update_rec(answer)
     return answer
 
 
