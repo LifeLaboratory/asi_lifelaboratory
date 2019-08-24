@@ -1,9 +1,10 @@
+import os
 HEADER = {'Access-Control-Allow-Origin': '*'}
 DATABASE = {
-    "dbname": "skb_anton",
-    "user": "skb_anton",
-    "host": "90.189.168.29",
-    "password": "PINLOX!@#"
+    "dbname": os.environ["DB_NAME"],
+    "user": os.environ["DB_LOGIN"],
+    "host": os.environ["DB_HOST"],
+    "password": os.environ["DB_PASSWORD"]
 }
 
-HOST = "http://90.189.168.29"
+HOST = os.environ["HOST"]
