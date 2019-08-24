@@ -11,6 +11,10 @@ from app.route.route_documents import Documents
 from app.route.route_project import GetProject, Project
 from app.route.route_projects import Projects
 
+from app.route.route_ads import Ads
+
+from app.route.route_cv import GetCv, Cv
+
 
 ROUTES = {
     Register: '/register',
@@ -27,4 +31,9 @@ ROUTES = {
     Project: '/project',
     Projects: '/project/filter',
     GetProject: '/project/<int:id_project>',
+
+    Ads: '/ads',
+
+    Cv: '/cv',
+    GetCv: '/cv/<int:id_user>',
 }

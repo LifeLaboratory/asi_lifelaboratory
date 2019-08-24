@@ -1,4 +1,4 @@
-from app.api.sql.document_provider import Provider
+from app.api.sql.project_provider import Provider
 from app.api.base import base_name as names
 
 
@@ -25,17 +25,6 @@ def get_filter_project(args):
         names.ID_CATEGORY: args.get(names.ID_CATEGORY),
     }
     answer = provider.get_filter_project(args)
-    return answer
-
-
-def get_user_document(args):
-    """
-    Метод для получения списка документов пользователя
-    :param args:
-    :return:
-    """
-    provider = Provider()
-    answer = provider.get_document(args)
     return answer
 
 
