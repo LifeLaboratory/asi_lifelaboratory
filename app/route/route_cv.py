@@ -8,7 +8,7 @@ class Cv(BaseRouter):
 
     def __init__(self):
         super().__init__()
-        self.args = [names.ID_USER, names.URL, names.TITLE, names.TYPE]
+        self.args = [names.ID_USER, names.URL, names.TITLE, names.TYPE, names.DESCRIPTION]
 
     def get(self):
         answer = get_cv()
@@ -16,6 +16,7 @@ class Cv(BaseRouter):
 
     def post(self):
         self._read_args()
+        print(self.data)
         answer = update_cv(self.data)
         return answer or {}
 

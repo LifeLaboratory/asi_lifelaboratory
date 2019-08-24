@@ -18,18 +18,32 @@ class Provider:
     def get_filter_project(args):
         query = """
     select 
+        distinct
           upd.id_project
-        , upd.id_document
-        , upd.id_user
+        , p.title
+        , p.description
+        , p.photo
+        , p.id_user
+        , p.budget::Text
+        , p.rate
         , u.name
         , u.photo
-    from user_project_doc upd
+        , category
+    from (
+      select distinct
+        upd.id_project
+        , array_agg(json_object(array['id_category', 'title', 'description', 'photo'], array[c.id_category::text, c.title::text, c.description::text, c.photo::text])::Text) as category
+      from user_project_doc upd
+      left join project_category pc on pc.id_project = upd.id_project
+      left join category c using(id_category)
+      where upd.id_project is not null
+        {id_user}
+      group by upd.id_project
+    ) upd
       left join project p using (id_project)
       left join users u on p.id_user = u.id_user
-      left join project_category pc on pc.id_project = p.id_project
-    where
-      case when '{id_user}' = 'None' then upd."id_user"::Text = '{id_user}' else True end
-      and case when '{id_category}' = 'None' then pc."id_category"::Text = any('{id_category}'::text[]) else True end
+    where true
+      {id_category}
     order by p.title
     """
         return Sql.exec(query=query, args=args)

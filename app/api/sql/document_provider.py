@@ -9,8 +9,31 @@ class Provider:
         *
     from document
     where "id_document" = {id_document}
+      and lesson is False
     """
         return Sql.exec(query=query, args=args)
+
+    @staticmethod
+    def get_lesson(args):
+        query = """
+    select 
+        *
+    from document
+    where "id_document" = {id_document}
+      and lesson is True
+    """
+        return Sql.exec(query=query, args=args)
+
+    @staticmethod
+    def get_lessons():
+        query = """
+    select 
+        *
+    from document
+    where lesson is True
+    order by title
+    """
+        return Sql.exec(query=query)
 
     @staticmethod
     def get_documents(args):
@@ -28,10 +51,11 @@ class Provider:
       left join users u using (id_user)
       left join project p using (id_project)
       left join document d using (id_document)
-    where
-      case when '{id_document}' = 'None' then upd."id_document"::Text = '{id_document}' else True end
-      and case when '{id_project}' = 'None' then upd."id_project"::Text = '{id_project}' else True end
-      and case when '{id_user}' = 'None' then upd."id_user"::Text = '{id_user}' else True end
+    where True
+      {id_document}
+      {id_project}
+      {id_user}
+      and lesson is False
     """
         return Sql.exec(query=query, args=args)
 
@@ -52,6 +76,7 @@ class Provider:
       left join project p using (id_project)
       left join document d using (id_document)
     where "id_project" = {id_project}
+      and lesson is False
     """
         return Sql.exec(query=query, args=args)
 
@@ -68,17 +93,20 @@ class Provider:
     from user_project_doc upd
       left join document d using (id_document)
     where "id_document" = {id_document}
+      and lesson is False
     """
         return Sql.exec(query=query, args=args)
 
     @staticmethod
     def insert_document(args):
         query = """
-    insert into document(url, title, type)
+    insert into document(url, title, type, photo, lesson)
     VALUES (
       '{url}'
       , '{title}'
       , {type}
+      , photo = '{photo}'
+      , lesson = {lesson}
     )
     """
         return Sql.exec(query=query, args=args)

@@ -8,6 +8,8 @@ from app.route.route_category import Category
 from app.route.route_document import Document, GetDocument
 from app.route.route_documents import Documents
 
+from app.route.route_lesson import Lesson, GetLesson
+
 from app.route.route_project import GetProject, Project
 from app.route.route_projects import Projects
 
@@ -35,5 +37,8 @@ ROUTES = {
     Ads: '/ads',
 
     Cv: '/cv',
-    GetCv: '/cv/<int:id_user>',
+    GetCv: '/cv/<int:id_cv>',
+
+    Lesson: '/lessons',
+    GetLesson: '/lesson/<int:id_lesson>',
 }
