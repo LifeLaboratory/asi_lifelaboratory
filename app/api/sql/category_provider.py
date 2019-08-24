@@ -3,25 +3,25 @@ from app.api.base.base_sql import Sql
 
 class Provider:
     @staticmethod
-    def get_profile(args):
+    def get_user_category(args):
         query = """
-    select name
-      , photo
-      , rate
+    select 
+        uc.id_category
+      , title
       , description
-    from users
+      , photo
+    from user_category uc
+      left join category using(id_category)
     where "id_user" = {id_user}
     """
         return Sql.exec(query=query, args=args)
 
     @staticmethod
-    def update_profile(args):
+    def get_category(args):
         query = """
-    update users 
-      set name = '{name}'
-        , login = '{login}'
-        , description = '{description}'
-        , photo = '{photo}'
-      where "id_user" = {id_user}
+    select 
+        *
+    from category
+    where "id_category" = {id_category}
     """
         return Sql.exec(query=query, args=args)
