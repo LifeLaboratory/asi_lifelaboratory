@@ -10,10 +10,10 @@ from app.route.route_documents import Documents
 
 from app.route.route_lesson import Lesson, GetLesson
 
-from app.route.route_project import Project, GetProject, GetProjectBudget
+from app.route.route_project import Project, GetProject, GetProjectBudget, GetProjectCategory
 from app.route.route_projects import Projects
 
-from app.route.route_ads import Ads
+from app.route.ads.route import Ads
 
 from app.route.route_cv import GetCv, Cv
 from app.route.route_investors import Investors
@@ -26,7 +26,7 @@ ROUTES = {
     '/auth': Auth,
     '/profile/<int:id_user>': Profile,
 
-    '/user/category/<int:id_user>': UserCategory,
+    '/user/<int:id_user>/category': UserCategory,
     '/category/<int:id_category>': Category,
 
     '/document': Document,
@@ -36,6 +36,7 @@ ROUTES = {
     '/project': Project,
     '/project/filter': Projects,
     '/project/<int:id_project>': GetProject,
+    '/project/<int:id_project>/category': GetProjectCategory,
     '/project/<int:id_project>/budget': GetProjectBudget,
 
     '/ads': Ads,

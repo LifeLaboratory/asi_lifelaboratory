@@ -49,3 +49,18 @@ class GetProjectBudget(BaseRouter):
         answer = get_project(args)
         print(answer)
         return answer or {}
+
+
+class GetProjectCategory(BaseRouter):
+
+    def __init__(self):
+        super().__init__()
+        self.args = []
+
+    def get(self, id_project):
+        args = {
+            names.ID_PROJECT: id_project
+        }
+        answer = get_project_category(args)
+        print(answer)
+        return answer or {}

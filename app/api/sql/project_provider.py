@@ -24,6 +24,18 @@ class Provider:
             return Sql.exec(query=query)
 
     @staticmethod
+    def get_project_category(args):
+        query = """
+    select 
+        *
+    from project_category
+      left 
+    where "id_project" = {id_project}
+    order by title
+        """
+        return Sql.exec(query=query, args=args)
+
+    @staticmethod
     def get_filter_project(args):
         query = """
     select 

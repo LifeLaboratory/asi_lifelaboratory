@@ -1,4 +1,4 @@
-from app.api.sql.ads_provider import Provider
+from app.route.ads.provider import Provider
 
 
 def get_ads():

@@ -23,6 +23,17 @@ def get_project(args):
     return answer
 
 
+def get_project_category(args):
+    """
+    Метод для получения данных о категориях проекта
+    :param args:
+    :return:
+    """
+    provider = Provider()
+    answer = provider.get_project_category(args)
+    return answer
+
+
 def get_project_budget(args):
     """
     Получение бюджета проекта
