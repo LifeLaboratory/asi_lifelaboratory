@@ -9,18 +9,12 @@ class Sql:
     @staticmethod
     def connect():
         config_connect = "dbname='{dbname}' user='{user}' host='{host}' password='{password}'"
-        try:
-            connect = psycopg2.connect(config_connect.format(**DATABASE))
-            return connect, connect.cursor(cursor_factory=RealDictCursor)
-        except:
-            return errors.SQL_ERROR
+        connect = psycopg2.connect(config_connect.format(**DATABASE))
+        return connect, connect.cursor(cursor_factory=RealDictCursor)
 
     @staticmethod
     def exec(query=None, args=None, file=None):
-        try:
-            return Sql._switch(query=query, args=args, file=file)
-        except:
-            return errors.SQL_ERROR
+        return Sql._switch(query=query, args=args, file=file)
 
     @staticmethod
     def _switch(query=None, args=None, file=None):
@@ -64,12 +58,9 @@ class Sql:
         :param query: str SQL запрос
         :return: dict результат выполнения запроса
         """
-        try:
-            connect, current_connect = Sql.connect()
-            current_connect.autocommit = True
-            result = None
-        except:
-            return errors.SQL_ERROR
+        connect, current_connect = Sql.connect()
+        current_connect.autocommit = True
+        result = None
         try:
             current_connect.execute(query)
             connect.commit()
