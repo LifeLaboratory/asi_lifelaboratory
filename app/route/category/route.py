@@ -4,15 +4,15 @@ from app.route.category.processor import *
 from app.api.base.base_router import BaseRouter
 
 
-class UserCategory(BaseRouter):
+class Category(BaseRouter):
 
     def __init__(self):
         super().__init__()
         self.args = []
 
-    def get(self, id_user):
+    def get(self, id_category):
         args = {
-            names.ID_USER: id_user
+            names.ID_CATEGORY: id_category
         }
-        answer = get_user_category(args)
+        answer = get_category(args)
         return answer or {}

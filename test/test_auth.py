@@ -2,7 +2,6 @@ import unittest
 import requests as req
 from app.config.config import HOST
 import app.api.base.base_name as names
-from app.api.src.authentication import auth
 from app.api.helpers.service import Gis
 
 
@@ -76,7 +75,6 @@ class TestAuth(unittest.TestCase):
         return
 
     def test_delete_expired_start_back_staff(self):
-        from datetime import datetime
         data = {
                 names.ID_USER: 9,
                 names.ID_USER_NOM: 1
@@ -88,7 +86,6 @@ class TestAuth(unittest.TestCase):
         return
 
     def test_delete_sales_start_back_staff(self):
-        from datetime import datetime
         data = {
                 names.ID_USER: 9,
                 names.ID_SALES: 1

@@ -1,24 +1,24 @@
-from app.route.route_auth import Auth
-from app.route.route_profile import Profile
-from app.route.route_register import Register
+from app.route.auth.route import Auth
+from app.route.profile.route import Profile
+from app.route.register.route import Register
 
 from app.route.route_user_category import UserCategory
-from app.route.route_category import Category
+from app.route.category.route import Category
 
-from app.route.route_document import Document, GetDocument
-from app.route.route_documents import Documents
+from app.route.document.route import Document, GetDocument
+from app.route.documents.route import Documents
 
-from app.route.route_lesson import Lesson, GetLesson
+from app.route.lesson.route import Lesson, GetLesson
 
-from app.route.route_project import Project, GetProject, GetProjectBudget, GetProjectCategory
-from app.route.route_projects import Projects
+from app.route.project.route import Project, GetProject, GetProjectBudget, GetProjectCategory
+from app.route.projects.route import Projects
 
 from app.route.ads.route import Ads
 
-from app.route.route_cv import GetCv, Cv
-from app.route.route_investors import Investors
+from app.route.cv.route import GetCv, Cv
+from app.route.investors.route import Investors
 
-from app.route.route_budget import Budget, GetBudget
+from app.route.budget.route import Budget, GetBudget
 
 
 ROUTES = {
