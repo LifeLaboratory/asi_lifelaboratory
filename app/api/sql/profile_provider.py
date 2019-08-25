@@ -9,6 +9,8 @@ class Provider:
       , photo
       , rate
       , description
+      , budget::float
+      , card
     from users
     where "id_user" = {id_user}
     """

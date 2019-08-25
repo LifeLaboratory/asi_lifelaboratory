@@ -11,7 +11,28 @@ def get_project(args):
     """
     provider = Provider()
     answer = provider.get_project(args)
+
+    # TODO КОСТЫЛЬ
+    if isinstance(answer, list) and len(answer) == 1:
+        answer = answer[0]
+        if answer.get('budget'):
+            answer['budget'] = float(answer.get('budget'))
+    elif isinstance(answer, list):
+        for a in answer:
+            a['budget'] = float(a.get('budget'))
     return answer
+
+
+def get_project_budget(args):
+    """
+    Получение бюджета проекта
+    :param args:
+    :return:
+    """
+    provider = Provider()
+    answer = provider.get_budget(args)
+    return answer
+
 
 def update_rec(answer):
     for i in range(len(answer)):

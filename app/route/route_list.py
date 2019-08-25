@@ -10,35 +10,45 @@ from app.route.route_documents import Documents
 
 from app.route.route_lesson import Lesson, GetLesson
 
-from app.route.route_project import GetProject, Project
+from app.route.route_project import Project, GetProject, GetProjectBudget
 from app.route.route_projects import Projects
 
 from app.route.route_ads import Ads
 
 from app.route.route_cv import GetCv, Cv
+from app.route.route_investors import Investors
+
+from app.route.route_budget import Budget, GetBudget
 
 
 ROUTES = {
-    Register: '/register',
-    Auth: '/auth',
-    Profile: '/profile/<int:id_user>',
+    '/register': Register,
+    '/auth': Auth,
+    '/profile/<int:id_user>': Profile,
 
-    UserCategory: '/user/category/<int:id_user>',
-    Category: '/category/<int:id_category>',
+    '/user/category/<int:id_user>': UserCategory,
+    '/category/<int:id_category>': Category,
 
-    Document: '/document',
-    GetDocument: '/document/<int:id_document>',
-    Documents: '/documents',
+    '/document': Document,
+    '/document/<int:id_document>': GetDocument,
+    '/documents': Documents,
 
-    Project: '/project',
-    Projects: '/project/filter',
-    GetProject: '/project/<int:id_project>',
+    '/project': Project,
+    '/project/filter': Projects,
+    '/project/<int:id_project>': GetProject,
+    '/project/<int:id_project>/budget': GetProjectBudget,
 
-    Ads: '/ads',
+    '/ads': Ads,
 
-    Cv: '/cv',
-    GetCv: '/cv/<int:id_cv>',
+    '/cv': Cv,
+    '/cv/<int:id_cv>': GetCv,
 
-    Lesson: '/lessons',
-    GetLesson: '/lesson/<int:id_lesson>',
+    '/lessons': Lesson,
+    '/lesson/<int:id_lesson>': GetLesson,
+
+    '/budget': Budget,
+    '/budget/<int:id_user>': GetBudget,
+    # '/budget/<int:id_user>/<int:id_project>': GetBudgetProject,
+
+    '/investors': Investors,
 }

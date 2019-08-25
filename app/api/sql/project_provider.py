@@ -1,18 +1,27 @@
-
+from app.api.base import base_name as names
 from app.api.base.base_sql import Sql
 
 
 class Provider:
     @staticmethod
     def get_project(args):
-        query = """
-    select 
-        *
-    from project
-    where "id_project" = {id_project}
-    order by title
-    """
-        return Sql.exec(query=query, args=args)
+        if args.get(names.ID_PROJECT):
+            query = """
+        select 
+            *
+        from project
+        where "id_project" = {id_project}
+        order by title
+        """
+            return Sql.exec(query=query, args=args)
+        else:
+            query = """
+            select 
+                *
+            from project
+            order by title
+                    """
+            return Sql.exec(query=query)
 
     @staticmethod
     def get_filter_project(args):
@@ -51,12 +60,14 @@ class Provider:
     @staticmethod
     def insert_project(args):
         query = """
-    insert into project(title, description, photo, budget)
+    insert into project(title, description, photo, budget, rate, id_user)
     VALUES (
       '{title}'
       , '{description}'
       , '{photo}'
       , {budget}
+      , '{rate}'
+      , '{id_user}'
     )
     """
         return Sql.exec(query=query, args=args)
@@ -72,5 +83,16 @@ class Provider:
     where id_project = {id_project}
       and id_user = {id_user}
     )
+    """
+        return Sql.exec(query=query, args=args)
+
+    @staticmethod
+    def get_budget(args):
+        query = """
+    select 
+        *
+    from budget
+    where "id_project" = {id_project}
+    order by budget
     """
         return Sql.exec(query=query, args=args)

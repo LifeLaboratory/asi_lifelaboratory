@@ -22,7 +22,7 @@ def not_found(error):
 
 if __name__ == '__main__':
     try:
-        for route_class, route in ROUTES.items():
+        for route, route_class in ROUTES.items():
             api.add_resource(route_class, route)
         _app.run(host='0.0.0.0', port=80, threaded=True)
     except Exception as e:

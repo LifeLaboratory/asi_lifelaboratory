@@ -9,7 +9,7 @@ class Profile(BaseRouter):
     def __init__(self):
         super().__init__()
         self.args = [names.LOGIN, names.PASSWORD, names.NAME,
-                     names.DESCRIPTION, names.TITLE, names.PHOTO]
+                     names.DESCRIPTION, names.TITLE, names.PHOTO, names.CARD]
 
     def get(self, id_user):
         args = {
