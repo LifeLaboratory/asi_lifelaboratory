@@ -52,7 +52,7 @@ class RegistrationIPPrintForm():
     def quadro(self, width, height, count):
         # , width=450, height=20
         for c in range(count):
-            self.MyCanvas.drawImage('D:/asi_lifelaboratory_backend/app/route/print_form/quadro1.png', width, height, width=15, height=20)
+            self.MyCanvas.drawImage('route/print_form/quadro1.png', width, height, width=15, height=20)
             width += 13
 
     def create_form(self):
@@ -64,7 +64,7 @@ class RegistrationIPPrintForm():
         MyFontObject = ttfonts.TTFont('Arial', 'arial.ttf')
         pdfmetrics.registerFont(MyFontObject)
         self.MyCanvas.setFont('Arial', 12)
-        self.MyCanvas.drawImage('D:/asi_lifelaboratory_backend/app/route/print_form/ip_shtrih_code.png', 1, 795, 100, 30)
+        self.MyCanvas.drawImage('route/print_form/ip_shtrih_code.png', 1, 795, 100, 30)
         self.MyCanvas.drawString(280, 810, 'Стр 001')
         self.MyCanvas.drawString(480, 795, 'Форма № Р21001')
         self.MyCanvas.drawString(480, 780, 'Код по КНД 1112501')
@@ -126,7 +126,7 @@ class RegistrationIPPrintForm():
             self.MyCanvas.drawString(15, height, _string)
 
         self.MyCanvas.showPage()
-        self.MyCanvas.drawImage('D:/asi_lifelaboratory_backend/app/route/print_form/ip_shtrih_code.png', 1, 795, 100, 30)
+        self.MyCanvas.drawImage('route/print_form/ip_shtrih_code.png', 1, 795, 100, 30)
         self.MyCanvas.setFont('Arial', 12)
         self.MyCanvas.drawString(280, 810, 'Стр 002')
         self.MyCanvas.drawString(480, 795, 'Форма № Р21001')
@@ -278,7 +278,7 @@ class RegistrationIPPrintForm():
 
 class ModelPrintForm():
     def __init__(self):
-        self.name_form = 'D:/asi_lifelaboratory_backend/app/print_form/read/'
+        self.name_form = 'print_form/read/'
         self.filter = None
         self.surname = None  # Фамилия
         self.name = None

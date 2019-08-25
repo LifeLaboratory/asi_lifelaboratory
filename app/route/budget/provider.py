@@ -5,11 +5,21 @@ class Provider:
     @staticmethod
     def get_budget(args):
         query = """
+  select *
+  from(
     select 
-        *
-    from budget
-    where "id_user" = {id_user}
-    order by budget
+      b.id_user
+      , b.id_project
+      , p.title
+      , sum(b.budget) as budget
+    from budget b
+      left join project p using (id_project)
+    where b."id_user" = {id_user}
+    group by b.id_user
+      , b.id_project
+      , p.title
+  ) nd
+  order by budget
     """
         return Sql.exec(query=query, args=args)
 
