@@ -18,6 +18,7 @@ from app.route.cv.route import GetCv, Cv
 from app.route.investors.route import Investors
 
 from app.route.budget.route import Budget, GetBudget
+from app.route.print_form.route import PrintForm, GetPrintForm
 
 
 ROUTES = {
@@ -51,4 +52,7 @@ ROUTES = {
     # '/budget/<int:id_user>/<int:id_project>': GetBudgetProject,
 
     '/investors': Investors,
+
+    '/print_form': PrintForm,
+    '/print_form/<int:id_user>': GetPrintForm,
 }
