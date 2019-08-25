@@ -9,7 +9,7 @@ from flask_restful import Api
 from app.route.route_list import ROUTES
 
 
-_app = flask.Flask(__name__, static_folder="client")
+_app = flask.Flask(__name__, static_folder="print_form")
 _app.config['JSON_AS_ASCII'] = False
 api = Api(_app)
 HEADER = {'Access-Control-Allow-Origin': '*'}

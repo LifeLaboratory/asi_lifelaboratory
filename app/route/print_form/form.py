@@ -14,10 +14,11 @@ class RegistrationIPPrintForm():
     def __init__(self):
         # self.pdf = FPDF()
         self.model = ModelPrintForm()
-        self.MyCanvas = canvas.Canvas(self.model.name_form)
+        self.MyCanvas = None
 
-    def get_print_form(self):
-        result_dict = self.select_mlr({'id_user': 1})
+    def get_print_form(self, args):
+        self.MyCanvas = canvas.Canvas(self.model.name_form + args.get(names.ID_USER)+'.pdf')
+        result_dict = self.select_mlr(args)
         self.model.apply_filter(result_dict)
         self.create_form()
 
@@ -51,7 +52,7 @@ class RegistrationIPPrintForm():
     def quadro(self, width, height, count):
         # , width=450, height=20
         for c in range(count):
-            self.MyCanvas.drawImage('quadro1.png', width, height, width=15, height=20)
+            self.MyCanvas.drawImage('D:/asi_lifelaboratory_backend/app/route/print_form/quadro1.png', width, height, width=15, height=20)
             width += 13
 
     def create_form(self):
@@ -63,7 +64,7 @@ class RegistrationIPPrintForm():
         MyFontObject = ttfonts.TTFont('Arial', 'arial.ttf')
         pdfmetrics.registerFont(MyFontObject)
         self.MyCanvas.setFont('Arial', 12)
-        self.MyCanvas.drawImage('ip_shtrih_code.png', 1, 795, 100, 30)
+        self.MyCanvas.drawImage('D:/asi_lifelaboratory_backend/app/route/print_form/ip_shtrih_code.png', 1, 795, 100, 30)
         self.MyCanvas.drawString(280, 810, 'Стр 001')
         self.MyCanvas.drawString(480, 795, 'Форма № Р21001')
         self.MyCanvas.drawString(480, 780, 'Код по КНД 1112501')
@@ -83,7 +84,7 @@ class RegistrationIPPrintForm():
             '2  ИНН (при наличии)             %s' % self.get_field(self.model.inn),
             '3  Пол                %s' % self.get_field(str(self.model.sex)),
             '4  Сведения о рождении',
-            '4.1  Дата рождения      %s' % self.get_field_date(self.model.birthday),
+            '4.1  Дата рождения      %s' % self.get_field(self.model.birthday),
             '4.2  Место рождения',
       ]
         lines = [623, 590, 554, 483, 448, 415]
@@ -125,7 +126,7 @@ class RegistrationIPPrintForm():
             self.MyCanvas.drawString(15, height, _string)
 
         self.MyCanvas.showPage()
-        self.MyCanvas.drawImage('ip_shtrih_code.png', 1, 795, 100, 30)
+        self.MyCanvas.drawImage('D:/asi_lifelaboratory_backend/app/route/print_form/ip_shtrih_code.png', 1, 795, 100, 30)
         self.MyCanvas.setFont('Arial', 12)
         self.MyCanvas.drawString(280, 810, 'Стр 002')
         self.MyCanvas.drawString(480, 795, 'Форма № Р21001')
@@ -197,7 +198,7 @@ class RegistrationIPPrintForm():
         self.quadro(101.5, 190, 40)  # Кем выдан
         self.quadro(20, 166, 50)  # Кем выдан
         self.quadro(20, 140, 50)  # Кем выдан
-        self.MyCanvas.drawString(15, height - 415, '4.1  Дата выдачи           %s' % self.get_field_date(self.model.date_passport))
+        self.MyCanvas.drawString(15, height - 415, '4.1  Дата выдачи           %s' % self.get_field(self.model.date_passport))
         self.MyCanvas.drawString(15, height - 445, '7.4 Кем выдан   %s' % self.get_field(self.model.issued_passport))
         self.MyCanvas.drawString(15, height - 560, '                                                                 Подпись заявителя_______________________')
         #
@@ -277,7 +278,7 @@ class RegistrationIPPrintForm():
 
 class ModelPrintForm():
     def __init__(self):
-        self.name_form = 'D:/asi_lifelaboratory_backend/app/client/reg_ip.pdf'
+        self.name_form = 'D:/asi_lifelaboratory_backend/app/print_form/read/'
         self.filter = None
         self.surname = None  # Фамилия
         self.name = None
@@ -374,7 +375,3 @@ class ModelPrintForm():
         self.position = self.filter.get(names.position)
         self.attestor = self.filter.get(names.attestor)
         self.inn_attestor = self.filter.get(names.inn_attestor)
-
-
-print_form = RegistrationIPPrintForm()
-print_form.get_print_form()

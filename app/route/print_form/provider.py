@@ -8,7 +8,7 @@ class Provider:
         query = """
         select *
         from users u
-        left join "Организация" org on u.id_user = org.id_user  
+        join "Организация" org on u.id_user = org.id_user  
         where u.id_user = '{id_user}'
             """
         return Sql.exec(query=query, args=args)

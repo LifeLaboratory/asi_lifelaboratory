@@ -128,7 +128,7 @@ class TestAuth(unittest.TestCase):
         data = {
                 names.LOGIN: "ololol' and 1=2 or id_user=65 or 1=2--",
                 names.PASSWORD: "boris",
-                names.PAGE: 'client'
+                names.PAGE: 'print_form'
                 }
         r = s.post(HOST + '/api/v1/auth', data=data)
         result = Gis.converter(r.text)
