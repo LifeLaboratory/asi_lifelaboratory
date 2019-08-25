@@ -43,6 +43,7 @@ class Provider:
           upd.id_project
         , p.title
         , p.description
+        , p.description_full
         , p.photo
         , p.id_user
         , p.budget::Text
@@ -72,10 +73,11 @@ class Provider:
     @staticmethod
     def insert_project(args):
         query = """
-    insert into project(title, description, photo, budget, rate, id_user)
+    insert into project(title, description, description_full, photo, budget, rate, id_user)
     VALUES (
       '{title}'
       , '{description}'
+      , '{description_full}'
       , '{photo}'
       , {budget}
       , '{rate}'
@@ -90,6 +92,7 @@ class Provider:
     update project 
     set title = '{title}'
       , description = '{description}'
+      , description_full = '{description_full}'
       , photo = '{photo}'
       , budget = {budget}
     where id_project = {id_project}

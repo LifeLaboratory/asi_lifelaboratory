@@ -1,6 +1,5 @@
-from app.route.auth.route import Auth
+from app.route.user.route import Auth, Register
 from app.route.profile.route import Profile
-from app.route.register.route import Register
 
 from app.route.route_user_category import UserCategory
 from app.route.category.route import Category
