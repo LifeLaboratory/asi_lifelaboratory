@@ -6,9 +6,24 @@ class Provider:
     def get_profile(args):
         query = """
     select name
-      , img
+      , photo
+      , rate
+      , description
+      , budget::float
+      , card
     from users
     where "id_user" = {id_user}
     """
-        # print(query)
+        return Sql.exec(query=query, args=args)
+
+    @staticmethod
+    def update_profile(args):
+        query = """
+    update users 
+      set name = '{name}'
+        , login = '{login}'
+        , description = '{description}'
+        , photo = '{photo}'
+      where "id_user" = {id_user}
+    """
         return Sql.exec(query=query, args=args)

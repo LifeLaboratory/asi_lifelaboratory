@@ -12,7 +12,7 @@ class TestAuth(unittest.TestCase):
                 names.LOGIN: 'boris',
                 names.PASSWORD: 'boris'
                 }
-        data = req.post('http://127.0.0.1/auth', data=data)
+        data = req.post('http://localhost/auth', data=data)
         self.assertEqual(data.status_code, 200)
         self.assertIsNotNone(data.text)
         print(data.text)
