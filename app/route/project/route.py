@@ -39,13 +39,13 @@ class GetProjectBudget(BaseRouter):
 
     def __init__(self):
         super().__init__()
-        self.args = [names.ID_DOCUMENT, names.URL, names.TITLE, names.TYPE]
+        self.args = []
 
     def get(self, id_project):
         args = {
             names.ID_PROJECT: id_project
         }
-        answer = get_project(args)
+        answer = get_project_budget(args)
         print(answer)
         return answer or {}
 

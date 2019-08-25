@@ -105,9 +105,16 @@ class Provider:
     def get_budget(args):
         query = """
     select 
-        *
-    from budget
+        b.id_user
+      , u.name
+      , b.id_project
+      , sum(b.budget) as budget
+    from budget b
+      left join users u using (id_user)
     where "id_project" = {id_project}
+    group by b.id_user
+      , u.name
+      , b.id_project
     order by budget
     """
         return Sql.exec(query=query, args=args)

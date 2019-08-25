@@ -14,13 +14,6 @@ def get_print_form(args):
     # TODO КОСТЫЛЬ
     if isinstance(answer, list) and len(answer) == 1:
         answer = answer[0]
-    dates = [names.BIRTHDAY, names.date_passport, names.date_residence, names.exiration_date_residence]
-    for d in dates:
-        if answer.get(d):
-            answer[d] = answer[d].strftime('%d.%m.%Y.')
-        else:
-            answer[d] = ''
-    answer[names.code_another_activity] = ''
     return answer
 
 
