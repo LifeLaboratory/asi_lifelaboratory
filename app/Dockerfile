@@ -1,6 +1,6 @@
 FROM python:3
 
-WORKDIR /usr/src/auth
+WORKDIR /usr/src/app
 
 COPY requirements.txt ./
 RUN pip install --upgrade pip

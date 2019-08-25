@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+  app:
+    restart: always
+    build: app/
+    volumes:
+      - ./app/ :/app/
+    expose:
+      - "80"
