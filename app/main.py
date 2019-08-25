@@ -9,7 +9,7 @@ from flask_restful import Api
 from app.route.route_list import ROUTES
 
 
-_app = flask.Flask(__name__)
+_app = flask.Flask(__name__, static_folder="client")
 _app.config['JSON_AS_ASCII'] = False
 api = Api(_app)
 HEADER = {'Access-Control-Allow-Origin': '*'}
@@ -24,6 +24,6 @@ if __name__ == '__main__':
     try:
         for route, route_class in ROUTES.items():
             api.add_resource(route_class, route)
-        _app.run(host='0.0.0.0', port=80, threaded=True)
+        _app.run(host='0.0.0.0', port=12341, threaded=True)
     except Exception as e:
         print('Main except = ', e)

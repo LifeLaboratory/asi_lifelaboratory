@@ -59,8 +59,6 @@ STATUS_CHECK_DATA = 104
 STATUS_SQL_ERROR = 105
 STATUS_AUTH_FAILED = 106
 
-
-
 INN = 'ИНН'
 BIRTHDAY = 'ДеньРождения'
 PLACE_BIRTHDAY = 'МестоРождения'
@@ -99,3 +97,45 @@ email = 'email'
 position = 'Должность'
 attestor = 'Свидетель'
 inn_attestor = 'СвидетельИНН'
+
+
+print_form_fields = [
+    INN,
+    BIRTHDAY,
+    PLACE_BIRTHDAY,
+    сitizenship,
+    country_code,
+    post_code,
+    subject_code_rf,
+    area,
+    name_area,
+    city,
+    name_city,
+    locality,
+    locality_name,
+    street,
+    street_name ,
+    house,
+    house_number,
+    corps,
+    corps_number,
+    room_number,
+    type_doc,
+    passport,
+    date_passport,
+    issued_passport,
+    code_division,
+    residence,
+    number_doc_residence,
+    date_residence,
+    issued_residence,
+    exiration_date_residence,
+    code_activity,
+    code_another_activity,
+    get_answer,
+    tel_number,
+    email,
+    position,
+    attestor,
+    inn_attestor
+]
