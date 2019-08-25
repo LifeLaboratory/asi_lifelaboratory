@@ -44,9 +44,9 @@ class RegistrationIPPrintForm():
         return str
 
     def get_field_date(self, date):
-        day = date.strftime("%d")
-        month = date.strftime("%m")
-        year = date.strftime("%Y")
+        day = date.split('-')[2]
+        month = date.split('-')[1]
+        year = date.split('-')[0]
         return self.get_field(day) + '.  ' + self.get_field(month) + ' .  ' + self.get_field(year)
 
     def quadro(self, width, height, count):
@@ -84,7 +84,7 @@ class RegistrationIPPrintForm():
             '2  ИНН (при наличии)             %s' % self.get_field(self.model.inn),
             '3  Пол                %s' % self.get_field(str(self.model.sex)),
             '4  Сведения о рождении',
-            '4.1  Дата рождения      %s' % self.get_field(self.model.birthday),
+            '4.1  Дата рождения      %s' % self.get_field_date(self.model.birthday),
             '4.2  Место рождения',
       ]
         lines = [623, 590, 554, 483, 448, 415]
@@ -198,7 +198,7 @@ class RegistrationIPPrintForm():
         self.quadro(101.5, 190, 40)  # Кем выдан
         self.quadro(20, 166, 50)  # Кем выдан
         self.quadro(20, 140, 50)  # Кем выдан
-        self.MyCanvas.drawString(15, height - 415, '4.1  Дата выдачи           %s' % self.get_field(self.model.date_passport))
+        self.MyCanvas.drawString(15, height - 415, '4.1  Дата выдачи           %s' % self.get_field_date(self.model.date_passport))
         self.MyCanvas.drawString(15, height - 445, '7.4 Кем выдан   %s' % self.get_field(self.model.issued_passport))
         self.MyCanvas.drawString(15, height - 560, '                                                                 Подпись заявителя_______________________')
         #
