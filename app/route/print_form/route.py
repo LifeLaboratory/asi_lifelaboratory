@@ -1,50 +1,26 @@
 # coding=utf-8
-from app.route.project.processor import *
+from app.route.print_form.processor import *
 from app.api.base.base_router import BaseRouter
 
 
-class Project(BaseRouter):
+class PrintForm(BaseRouter):
 
     def __init__(self):
         super().__init__()
-        self.args = [names.ID_USER, names.TITLE, names.DESCRIPTION, names.NAME,
-                     names.PHOTO, names.CATEGORY, 'budget', 'rate', names.ID_DOCUMENT, names.URL]
+        self.args = names.print_form_fields
+        self.args.append(names.ID_USER)
 
     def post(self):
         self._read_args()
-        answer = update_project(self.data)
-        return answer or {}
-
-    def get(self):
-        answer = get_project({})
+        answer = update_print_form(self.data)
         return answer or {}
 
 
-class GetProject(BaseRouter):
+class GetPrintForm(PrintForm):
 
-    def __init__(self):
-        super().__init__()
-        self.args = [names.ID_DOCUMENT, names.URL, names.TITLE, names.TYPE]
-
-    def get(self, id_project):
+    def get(self, id_user):
         args = {
-            names.ID_PROJECT: id_project
+            names.ID_USER: id_user
         }
-        answer = get_project(args)
-        print(answer)
-        return answer or {}
-
-
-class GetProjectBudget(BaseRouter):
-
-    def __init__(self):
-        super().__init__()
-        self.args = [names.ID_DOCUMENT, names.URL, names.TITLE, names.TYPE]
-
-    def get(self, id_project):
-        args = {
-            names.ID_PROJECT: id_project
-        }
-        answer = get_project(args)
-        print(answer)
+        answer = get_print_form(args)
         return answer or {}

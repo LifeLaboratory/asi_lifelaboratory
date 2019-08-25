@@ -134,8 +134,5 @@ print_form_fields = [
     code_another_activity,
     get_answer,
     tel_number,
-    email,
-    position,
-    attestor,
-    inn_attestor
+    email
 ]
